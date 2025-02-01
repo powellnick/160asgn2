@@ -270,7 +270,8 @@ function drawAnimal(baseMatrix) {
   // Limit the head rotation to -45° to 45° only when animation is enabled
   let headAngle = 0; // Default to no rotation
   if (g_animationEnabled) {
-    headAngle = 62.5 * Math.sin(performance.now() / 1000); // Oscillate between -45° and 45° during animation
+    let time = performance.now() / 1000; // Convert to seconds
+    headAngle = 90 * (0.5 * (Math.sin(time) + 1)); // Oscillates between 0 and 90
   }
   
   mat4.rotateY(M, M, glMatrix.toRadian(headAngle)); // Apply rotation only if animation is enabled
