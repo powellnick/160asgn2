@@ -1,0 +1,69 @@
+<!-- Nicholas Powell -->
+<!-- nipowell@ucsc.edu -->
+
+<!-- Notes to grader: -->
+<!-- Poke animation with shift click shows animal sticking out tongue -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>3D Animated Animal</title>
+    <style>
+      #topRow {
+        display: flex;
+        align-items: flex-start;
+      }
+      #webgl {
+        border: 1px solid black;
+        margin-right: 20px;
+      }
+      #referenceImage {
+        width: 400px;
+        height: 400px;
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <div id="topRow">
+      <canvas id="webgl" width="400" height="400"></canvas>
+      <img id="referenceImage" src="GraphHouse.png" alt="Reference Drawing" />
+    </div>
+
+<!-- Sliders for Size & Joint Animation -->
+<fieldset>
+  <legend>Rotation & Animation</legend>
+  <button id="startAnimation" onclick="startAnimation()">Start Animation</button>
+  <button id="stopAnimation" onclick="stopAnimation()">Stop Animation</button>
+  <div id="fpsIndicator" style="position: fixed; top: 10px; left: 10px; color: white; font-size: 16px; z-index: 1000;">
+    FPS: Calculating...
+    </div>
+  <label for="jointRotation">Global Rotation:</label>
+  <input type="range" id="jointRotation" min="0" max="360" step="1" value="0" oninput="updateRotation()" />
+  <span id="jointValue">0</span>
+</fieldset>
+<fieldset>
+  <legend>Joint Controls</legend>
+  <label for="thighRotation">Thigh Rotation:</label>
+  <input type="range" id="thighRotation" min="-45" max="45" step="1" value="0" oninput="updateJointAngles()" />
+  <span id="thighValue">0</span>
+
+  <label for="calfRotation">Calf Rotation:</label>
+  <input type="range" id="calfRotation" min="-45" max="45" step="1" value="0" oninput="updateJointAngles()" />
+  <span id="calfValue">0</span>
+
+  <label for="tailRotation">Tail Rotation:</label>
+  <input type="range" id="tailRotation" min="-45" max="45" value="0" step="1" oninput="updateTailAngle()">
+  <span id="tailValue">0</span>
+</fieldset>
+
+    <!-- Scripts -->
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
+    <script src="ColoredPoints.js"></script>
+  </body>
+</html>
